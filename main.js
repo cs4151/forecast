@@ -106,6 +106,7 @@ map.fire("click", {
 })
 
 
+
 // Windpfeile
 async function loadWind(url) {
     let response = await fetch(url);
