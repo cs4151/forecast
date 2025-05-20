@@ -102,4 +102,27 @@ map.fire("click", {
         lat: ibk.lat,
         lng: ibk.lng,
     }
+
 })
+
+
+// Windpfeile
+async function loadWind(url) {
+    let response = await fetch(url);
+    let jsondata = await response.json();
+    console.log(jsondata);
+    let velocityLayer = L.velocityLayer({
+        displayValues: true,
+        lineWidth: 2,
+        displayOptions: {
+        velocityType: "",
+          position: "bottomright",
+          emptyString: "Keine Daten vorhanden",
+          speedUnit: "k/h",
+          directionString: "Windrichtung",
+          speedString: "Windgeschwindigkeit",
+        },
+        data: jsondata,
+      }).addTo(overlays.wind_richtung);
+}
+loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json")
